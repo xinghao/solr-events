@@ -12,7 +12,7 @@ set :default_stage, 'production'
 require 'capistrano/ext/multistage'
 
 set :scm, 'git'
-set :repository,  "git@github.com:Creagency/peoplefinders_data_import.git"
+set :repository,  "git@github.com:Creagency/solr-tracenames.git"
 
 set :branch, "master"
 
@@ -38,28 +38,12 @@ after "deploy:update" , "deploy:post_deploy"
 namespace :deploy do
   
   
-  task :resque_pre_setup do
-    #sudo "#{sudo} mkdir /www/rails_apps/peoplefinders_data_import/shared/pids"
-    sudo "#{sudo} chown ec2-user:ec2-user /www/rails_apps/peoplefinders_data_import/shared/pids"
-  end
-
-  task :resque_start do
-    require 'shellwords'
-    command = "cd #{latest_release}; RAILS_ENV=#{rails_env} COUNT=5 rake resque:workers:start  --trace"
-    run("echo #{Shellwords.escape(command)} | at -m now")    
-  end
-
-  task :resque_stop do
-    require 'shellwords'
-    command = "cd #{latest_release}; RAILS_ENV=#{rails_env} rake resque:workers:stop  --trace"
-    run("echo #{Shellwords.escape(command)} | at -m now")    
-  end
 
   
   task :pre_setup do
-    sudo "[ -d /www/rails_apps/peoplefinders_data_import ] || #{sudo} mkdir /www/rails_apps/peoplefinders_data_import"
-    #sudo "[ -d /SOLR/SolrServer ] || #{sudo} mkdir /SOLR/SolrServer"
-    sudo "[ -d /www/rails_apps/peoplefinders_data_import/releases ] || #{sudo} mkdir /www/rails_apps/peoplefinders_data_import/releases"
+    
+    sudo "[ -d /SOLR/SolrServer ] || #{sudo} mkdir /SOLR/SolrServer"
+    sudo "[ -d /SOLR/SolrServer/releases ] || #{sudo} mkdir /SOLR/SolrServer/releases"
 #    sudo "chown svc-rails.kazaaadm /SOLR"
   end
   

@@ -1,0 +1,65 @@
+#! /bin/sh
+#
+# solr 	Control the jetty container for SOLR search service.
+#
+# chkconfig: 2345 90 10
+# description: Servlet Container for SOLR 
+# processname: java
+# config: 
+# pidfile: /var/run/solr.pid
+
+
+# Source function library.
+. /etc/init.d/functions
+
+RETVAL=0
+PROCNAME=java
+PIDFILE=/var/run/jetty.pid
+LOCKFILE=/var/lock/subsys/jetty
+
+APPLE_START="/SOLR/SolrServer/current/start.sh"
+APPLE_STOP="/SOLR/SolrServer/current/stop.sh"
+APPLE_CHECK="/SOLR/SolrServer/current/check.sh"
+
+# See how we were called.
+case "$1" in
+  start)
+	echo -n "Starting Jetty container for SOLR: "
+	  $APPLE_START
+	echo
+	;;
+  stop)
+	echo -n "Stopping Jetty container for SOLR: "
+		$APPLE_STOP
+	RETVAL=$?
+	if [ $RETVAL -eq 0 ]
+	then
+		echo_success
+		rm -f $LOCKFILE $PIDFILE
+	else
+		echo_failure
+	fi
+	echo
+	;;
+  status)
+	$APPLE_CHECK
+	RETVAL=$?
+	;;
+  restart|reload)
+  	$0 stop
+	$0 start
+	RETVAL=$?
+	;;
+  condrestart)
+        if [ -f $PIDFILE ]; then
+            $0 stop
+            $0 start
+            RETVAL=$?
+        fi
+	;;
+  *)
+	echo "Usage: $0 {start|stop|status|restart|condrestart}"
+	exit 1
+esac
+
+exit $RETVAL
