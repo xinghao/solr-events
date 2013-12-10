@@ -1,10 +1,10 @@
 # Staging
 
 set :user, 'ec2-user'
-set :application, "peoplefinders_data_import"
+set :application, "SolrServer"
 set :hostname, "aws-master"
 set :rails_env, 'production'
-set :deploy_to, "/www/rails_apps/#{application}"
+set :deploy_to, "/SOLR/#{application}"
 ssh_options[:keys] = ["/Users/xinghao/aws-ec2/tracename-us.pem"]
 
 

@@ -41,7 +41,7 @@ namespace :deploy do
 
   
   task :pre_setup do
-    
+    sudo "[ -d /SOLR ] || #{sudo} mkdir /SOLR"
     sudo "[ -d /SOLR/SolrServer ] || #{sudo} mkdir /SOLR/SolrServer"
     sudo "[ -d /SOLR/SolrServer/releases ] || #{sudo} mkdir /SOLR/SolrServer/releases"
 #    sudo "chown svc-rails.kazaaadm /SOLR"
@@ -77,7 +77,7 @@ namespace :deploy do
   
   task :post_deploy do
 
-    run "export RAILS_ENV=#{rails_env} && cd #{latest_release} && bundle install"
+    #run "export RAILS_ENV=#{rails_env} && cd #{latest_release} && bundle install"
     #sudo "rm -f #{latest_release}/Gemfile"
     #sudo "mv #{latest_release}/Gemfile_prod #{latest_release}/Gemfile"
     sudo "chown -R apache:apache #{latest_release}"
