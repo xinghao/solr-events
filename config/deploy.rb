@@ -49,7 +49,7 @@ namespace :deploy do
   
   task :install_server_scripts do
     # sudo "cp -f #{latest_release}/server_configs/etc/logrotate.d/varnish /etc/logrotate.d/varnish"
-    # sudo "cp -f #{latest_release}/server_configs/etc/rc.d/init.d/solr /etc/init.d/solr"
+    sudo "cp -f #{latest_release}/etc/rc.d/init.d/solr /etc/init.d/solr"
     # sudo "cp -f #{latest_release}/server_configs/etc/rc.d/init.d/varnish /etc/init.d/varnish"
     # sudo "cp -f #{latest_release}/server_configs/etc/rc.d/init.d/varnishncsa /etc/init.d/varnishncsa"
     # sudo "cp -f #{latest_release}/server_configs/etc/sysconfig/varnish /etc/sysconfig/varnish"
