@@ -270,11 +270,11 @@
     <dynamicField name="*_llms" stored="true" type="location" multiValued="true" indexed="true"/>
     
     
-    <dynamicField indexed="true" multiValued="true" name="*_text_lowercase" stored="true" type="lowerCaseString"/>
+    <dynamicField indexed="true" multiValued="true" name="*_text_lowercase" stored="false" type="lowerCaseString"/>
     <dynamicField indexed="true" multiValued="true" name="*_text_lowercases" stored="true" type="lowerCaseString"/>
-    <dynamicField indexed="true" multiValued="true" name="*_text_edge_ngram" stored="true" type="t_edge_ngram"/>
+    <dynamicField indexed="true" multiValued="true" name="*_text_edge_ngram" stored="false" type="t_edge_ngram"/>
     <dynamicField indexed="true" multiValued="true" name="*_text_edge_ngrams" stored="true" type="t_edge_ngram"/>
-    <dynamicField indexed="false" multiValued="true" name="*_text_exact_normalised" stored="true" type="lowerCaseString"/>
+    <dynamicField indexed="false" multiValued="true" name="*_text_exact_normalised" stored="false" type="lowerCaseString"/>
     <dynamicField indexed="false" multiValued="true" name="*_text_exact_normaliseds" stored="true" type="lowerCaseString"/>
     
     <!-- required by Solr 4 -->

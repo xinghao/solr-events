@@ -1,16 +1,18 @@
 # Staging
 
-set :user, 'root'
-set :application, "peoplefinders_data_import"
-set :hostname, "frank"
+set :user, 'ss8558'
+set :application, "SolrServer"
+set :hostname, "aws-master"
 set :rails_env, 'production'
-set :deploy_to, "/www/rails_apps/#{application}"
+set :deploy_to, "/SOLR/#{application}"
+
+
 
 set :db_type, "master"
 
-role :app, "203.38.191.179"
-role :web, "203.38.191.179"
-role :db,  "203.38.191.179", :primary => true
+role :app, "66.85.152.90"
+role :web, "66.85.152.90"
+role :db,  "66.85.152.90", :primary => true
 
 set :branch do
   default_tag = `git tag -l #{rails_env}* `.split("\n").last
