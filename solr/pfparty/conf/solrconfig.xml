@@ -374,7 +374,7 @@
      </autoCommit>
      -->
     <autoCommit>
-      <maxDocs>10000</maxDocs> <!-- maximum uncommited docs before autocommit triggered -->
+      <maxDocs>100000</maxDocs> <!-- maximum uncommited docs before autocommit triggered -->
       <openSearcher>false</openSearcher> <!-- SOLR 4.0.  Optionally don't open a searcher on hard commit.  This is useful to minimize the size of transaction logs that keep track of uncommitted updates. -->
     </autoCommit>     
 
@@ -385,7 +385,7 @@
       -->
 
      <autoSoftCommit> 
-      <maxDocs>10000</maxDocs> <!-- maximum uncommited docs before autocommit triggered --> 
+      <maxDocs>1000000</maxDocs> <!-- maximum uncommited docs before autocommit triggered --> 
      </autoSoftCommit>
 
     <!-- Update Related Event Listeners
