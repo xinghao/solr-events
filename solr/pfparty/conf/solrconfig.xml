@@ -367,10 +367,16 @@
          If the updateLog is enabled, then it's highly recommended to
          have some sort of hard autoCommit to limit the log size.
       -->
+     <!--
      <autoCommit> 
        <maxTime>${solr.autoCommit.maxTime:15000}</maxTime> 
        <openSearcher>false</openSearcher> 
      </autoCommit>
+     -->
+    <autoCommit>
+      <maxDocs>10000</maxDocs> <!-- maximum uncommited docs before autocommit triggered -->
+      <openSearcher>false</openSearcher> <!-- SOLR 4.0.  Optionally don't open a searcher on hard commit.  This is useful to minimize the size of transaction logs that keep track of uncommitted updates. -->
+    </autoCommit>     
 
     <!-- softAutoCommit is like autoCommit except it causes a
          'soft' commit which only ensures that changes are visible
@@ -379,7 +385,7 @@
       -->
 
      <autoSoftCommit> 
-       <maxTime>${solr.autoSoftCommit.maxTime:-1}</maxTime> 
+      <maxDocs>10000</maxDocs> <!-- maximum uncommited docs before autocommit triggered --> 
      </autoSoftCommit>
 
     <!-- Update Related Event Listeners
