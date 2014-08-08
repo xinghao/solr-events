@@ -12,7 +12,7 @@ set :default_stage, 'production'
 require 'capistrano/ext/multistage'
 
 set :scm, 'git'
-set :repository,  "git@github.com:Creagency/solr-tracenames.git"
+set :repository,  "git@github.com:Creagency/solr-weedfinda.git"
 
 set :branch, "master"
 
@@ -44,6 +44,7 @@ namespace :deploy do
     sudo "[ -d /SOLR ] || #{sudo} mkdir /SOLR"
     sudo "[ -d /SOLR/SolrServer ] || #{sudo} mkdir /SOLR/SolrServer"
     sudo "[ -d /SOLR/SolrServer/releases ] || #{sudo} mkdir /SOLR/SolrServer/releases"
+    sudo "[ -d /SOLR/solr_data ] || #{sudo} mkdir /SOLR/solr_data"    
 #    sudo "chown svc-rails.kazaaadm /SOLR"
   end
   
