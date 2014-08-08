@@ -28,8 +28,8 @@
 
 <solr persistent="true" sharedLib="lib">
  <cores adminPath="/admin/cores">
-  <core name="dispensary" instanceDir="dispensary" />
-  <core name="strain" instanceDir="strain" />
-  <core name="region" instanceDir="region" />
+  <core name="dispensary" instanceDir="multicore" />
+  <core name="strain" instanceDir="multicore" />
+  <core name="region" instanceDir="multicore" />
  </cores>
 </solr>
