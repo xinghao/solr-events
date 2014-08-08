@@ -99,7 +99,7 @@
        replication is in use, this should match the replication
        configuration.
     -->
-  <dataDir>${solr.data.dir:}</dataDir>
+  <dataDir>${solr.data.dir:}/${solr.core.name}</dataDir>
 
 
   <!-- The DirectoryFactory to use for indexes.
@@ -997,6 +997,57 @@
      <arr name="last-components">
        <str>spellcheck</str>
      </arr>
+  </requestHandler>
+      
+  <requestHandler name="/dispensary_autosuggest" class="solr.SearchHandler">
+     <lst name="defaults">
+       <str name="echoParams">explicit</str>
+
+       <!-- VelocityResponseWriter settings -->
+       <str name="wt">velocity</str>
+       <str name="v.template">browse</str>
+       <str name="v.layout">layout</str>
+       <str name="title">Solritas</str>
+
+       <!-- Query settings -->
+       <str name="defType">edismax</str>
+       <str name="qf">
+        name_ng1_text_ngram1^0.01  
+        name_ws_eg_text_ws_edge_ngram^10 
+        name_eg_text_edge_ngram^10000    
+       </str>
+       <str name="pf">
+        name_text_lowercases^100000    
+       </str>       
+       <str name="df">text</str>
+       <str name="mm">100%</str>
+       <str name="q.alt">*:*</str>
+       <str name="rows">10</str>
+       <str name="fl">*,score</str>
+
+
+        <str name="bf">ord(hit_is)^5 ord(reviews_is)^0.05 ord(rating_fs)^0.001</str> 
+
+
+       <!-- Highlighting defaults -->
+       <str name="hl">on</str>
+       <str name="hl.fl">name_text_lowercases</str>
+       <str name="hl.encoder">html</str>
+       <str name="hl.simple.pre">&lt;b&gt;</str>
+       <str name="hl.simple.post">&lt;/b&gt;</str>
+       <str name="f.title.hl.fragsize">0</str>
+       <str name="f.title.hl.alternateField">title</str>
+       <str name="f.name.hl.fragsize">0</str>
+       <str name="f.name.hl.alternateField">name</str>
+       <str name="f.content.hl.snippets">3</str>
+       <str name="f.content.hl.fragsize">200</str>
+       <str name="f.content.hl.alternateField">content</str>
+       <str name="f.content.hl.maxAlternateFieldLength">750</str>
+
+           
+     </lst>
+
+ 
   </requestHandler>
 
 

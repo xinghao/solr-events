@@ -103,6 +103,18 @@
        </analyzer>
     </fieldType>
     
+    <fieldType name="edgengram" class="solr.TextField" positionIncrementGap="100">
+       <analyzer type="index">
+          <tokenizer class="solr.KeywordTokenizerFactory"/>
+          <filter class="solr.LowerCaseFilterFactory"/>
+          <filter class="solr.EdgeNGramFilterFactory" minGramSize="1" maxGramSize="15" side="front"/>
+       </analyzer>
+       <analyzer type="query">
+          <tokenizer class="solr.KeywordTokenizerFactory"/>
+          <filter class="solr.LowerCaseFilterFactory"/>
+       </analyzer>
+    </fieldType>    
+    
     <fieldType name="lowerCaseString" class="solr.TextField"
       sortMissingLast="true" omitNorms="true">
       <analyzer>
@@ -120,6 +132,71 @@
       </analyzer>
     </fieldType>
     
+    <!-- n-gram tokenization - 2 chars tokens -->
+    <fieldType name="ngram2" class="solr.TextField"
+      positionIncrementGap="100">
+      <analyzer type="index">
+        <tokenizer
+          class="org.apache.solr.analysis.NGramTokenizerFactory"
+          minGramSize="2" maxGramSize="2" />
+
+        <filter class="solr.LowerCaseFilterFactory" />
+        <!--        <filter class="solr.RemoveDuplicatesTokenFilterFactory" />-->
+      </analyzer>
+      <analyzer type="query">
+        <tokenizer
+          class="org.apache.solr.analysis.NGramTokenizerFactory"
+          minGramSize="2" maxGramSize="2" />
+
+
+        <filter class="solr.LowerCaseFilterFactory" />
+        <!--        <filter class="solr.RemoveDuplicatesTokenFilterFactory" />-->
+      </analyzer>
+    </fieldType>
+
+    <!-- n-gram tokenization - 1 chars tokens -->
+    <fieldType name="ngram1" class="solr.TextField"
+      positionIncrementGap="100">
+      <analyzer type="index">
+        <tokenizer
+          class="org.apache.solr.analysis.NGramTokenizerFactory"
+          minGramSize="1" maxGramSize="1" />
+
+        <filter class="solr.LowerCaseFilterFactory" />
+        <!--        <filter class="solr.RemoveDuplicatesTokenFilterFactory" />-->
+      </analyzer>
+      <analyzer type="query">
+        <tokenizer
+          class="org.apache.solr.analysis.NGramTokenizerFactory"
+          minGramSize="1" maxGramSize="1" />
+
+
+        <filter class="solr.LowerCaseFilterFactory" />
+        <!--        <filter class="solr.RemoveDuplicatesTokenFilterFactory" />-->
+      </analyzer>
+    </fieldType>
+
+
+    <fieldType name="ngram3" class="solr.TextField"
+      positionIncrementGap="100">
+      <analyzer type="index">
+        <tokenizer
+          class="org.apache.solr.analysis.NGramTokenizerFactory"
+          minGramSize="3" maxGramSize="3" />
+          
+        <filter class="solr.LowerCaseFilterFactory" />
+        <!--        <filter class="solr.RemoveDuplicatesTokenFilterFactory" />-->
+      </analyzer>
+      <analyzer type="query">
+        <tokenizer
+          class="org.apache.solr.analysis.NGramTokenizerFactory"
+          minGramSize="3" maxGramSize="3" />
+          
+        <filter class="solr.LowerCaseFilterFactory" />
+        <!--        <filter class="solr.RemoveDuplicatesTokenFilterFactory" />-->
+      </analyzer>
+    </fieldType>
+        
   </types>
   <fields>
     <!-- Valid attributes for fields:
@@ -270,16 +347,19 @@
     <dynamicField name="*_llms" stored="true" type="location" multiValued="true" indexed="true"/>
     
     
-    <dynamicField indexed="true" multiValued="true" name="*_text_lowercase" stored="false" type="lowerCaseString"/>
-    <dynamicField indexed="true" multiValued="true" name="*_text_lowercases" stored="true" type="lowerCaseString"/>        
-    <dynamicField indexed="true" multiValued="true" name="*_text_edge_ngram" stored="false" type="t_edge_ngram"/>
-    <dynamicField indexed="true" multiValued="true" name="*_text_edge_ngrams" stored="true" type="t_edge_ngram"/>
-    <dynamicField indexed="false" multiValued="true" name="*_text_exact_normalised" stored="false" type="lowerCaseString"/>
-    <dynamicField indexed="false" multiValued="true" name="*_text_exact_normaliseds" stored="true" type="lowerCaseString"/>
-    
-    <dynamicField indexed="true" multiValued="false" name="*_text_ngram_autosuggest" stored="false" type="lowerCaseString"/>
-    <dynamicField indexed="true" multiValued="false" name="*_text_ngram_autosuggests" stored="true" type="lowerCaseString"/>
-    
+    <dynamicField indexed="true" multiValued="false" name="*_text_lowercase" stored="false" type="lowerCaseString"/>
+    <dynamicField indexed="true" multiValued="false" name="*_text_lowercases" stored="true" type="lowerCaseString"/>        
+    <dynamicField indexed="true" multiValued="false" name="*text_ws_edge_ngram" stored="false" type="t_edge_ngram"/>
+    <dynamicField indexed="true" multiValued="false" name="*text_ws_edge_ngrams" stored="true" type="t_edge_ngram"/>
+    <dynamicField indexed="false" multiValued="true" name="*_m_text_exact_normaliseds" stored="ture" type="lowerCaseString"/>
+    <dynamicField indexed="false" multiValued="false" name="*_text_exact_normaliseds" stored="true" type="lowerCaseString"/>
+            
+    <dynamicField indexed="true" multiValued="false" name="*_text_ngram2" stored="false" type="ngram2"/>
+    <dynamicField indexed="true" multiValued="false" name="*_text_ngram3" stored="false" type="ngram3"/>
+    <dynamicField indexed="true" multiValued="false" name="*_text_ngram1" stored="false" type="ngram1"/>
+        
+    <dynamicField indexed="true" multiValued="false" name="*_text_edge_ngram" stored="false" type="edgengram"/>
+            
     <!-- required by Solr 4 -->
     <field name="_version_" type="string" indexed="true" stored="true" multiValued="false" />
   </fields>
