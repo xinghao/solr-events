@@ -348,6 +348,10 @@
     
     
     <dynamicField indexed="true" multiValued="false" name="*_text_lowercase" stored="false" type="lowerCaseString"/>
+    
+    <dynamicField indexed="true" multiValued="true" name="*_text_lowercase_multivalues" stored="true" type="lowerCaseString"/>
+    <dynamicField indexed="true" multiValued="true" name="*_text_lowercase_multivalue" stored="false" type="lowerCaseString"/>
+    
     <dynamicField indexed="true" multiValued="false" name="*_text_lowercases" stored="true" type="lowerCaseString"/>        
     <dynamicField indexed="true" multiValued="false" name="*text_ws_edge_ngram" stored="false" type="t_edge_ngram"/>
     <dynamicField indexed="true" multiValued="false" name="*text_ws_edge_ngrams" stored="true" type="t_edge_ngram"/>
@@ -359,6 +363,7 @@
     <dynamicField indexed="true" multiValued="false" name="*_text_ngram1" stored="false" type="ngram1"/>
         
     <dynamicField indexed="true" multiValued="false" name="*_text_edge_ngram" stored="false" type="edgengram"/>
+    <dynamicField indexed="true" multiValued="true" name="*_text_edgengram_multivalue" stored="false" type="edgengram"/>
             
     <!-- required by Solr 4 -->
     <field name="_version_" type="string" indexed="true" stored="true" multiValued="false" />

@@ -30,6 +30,6 @@
  <cores adminPath="/admin/cores">
   <core name="dispensary" instanceDir="multicore" />
   <core name="strain" instanceDir="multicore" />
-  <core name="region" instanceDir="multicore" />
+  <core name="listingregion" instanceDir="multicore" />
  </cores>
 </solr>
