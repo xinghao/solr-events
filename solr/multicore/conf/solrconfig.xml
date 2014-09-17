@@ -371,10 +371,11 @@
      <autoCommit> 
        <maxTime>${solr.autoCommit.maxTime:15000}</maxTime> 
        <openSearcher>false</openSearcher> 
+       <maxTime>300000</maxTime>
      </autoCommit>
      -->
     <autoCommit>
-      <maxTime>300000</maxTime> 
+      <maxDocs>100000</maxDocs> <!-- maximum uncommited docs before autocommit triggered -->
       <openSearcher>false</openSearcher> <!-- SOLR 4.0.  Optionally don't open a searcher on hard commit.  This is useful to minimize the size of transaction logs that keep track of uncommitted updates. -->
     </autoCommit>     
 
@@ -382,10 +383,11 @@
          'soft' commit which only ensures that changes are visible
          but does not ensure that data is synced to disk.  This is
          faster and more near-realtime friendly than a hard commit.
+         <maxTime>3000</maxTime> 
       -->
 
-     <autoSoftCommit>  
-      <maxTime>3000</maxTime> 
+     <autoSoftCommit> 
+      <maxDocs>100000</maxDocs> <!-- maximum uncommited docs before autocommit triggered --> 
      </autoSoftCommit>
 
     <!-- Update Related Event Listeners
