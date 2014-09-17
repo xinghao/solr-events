@@ -364,7 +364,7 @@
         
     <dynamicField indexed="true" multiValued="false" name="*_text_edge_ngram" stored="false" type="edgengram"/>
     <dynamicField indexed="true" multiValued="true" name="*_text_edgengram_multivalue" stored="false" type="edgengram"/>
-            
+    <dynamicField indexed="true" multiValued="true" name="*_text_edgengram_multivalues" stored="true" type="edgengram"/>        
     <!-- required by Solr 4 -->
     <field name="_version_" type="string" indexed="true" stored="true" multiValued="false" />
   </fields>

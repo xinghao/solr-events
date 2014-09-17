@@ -374,7 +374,7 @@
      </autoCommit>
      -->
     <autoCommit>
-      <maxDocs>100000</maxDocs> <!-- maximum uncommited docs before autocommit triggered -->
+      <maxTime>300000</maxTime> 
       <openSearcher>false</openSearcher> <!-- SOLR 4.0.  Optionally don't open a searcher on hard commit.  This is useful to minimize the size of transaction logs that keep track of uncommitted updates. -->
     </autoCommit>     
 
@@ -384,8 +384,8 @@
          faster and more near-realtime friendly than a hard commit.
       -->
 
-     <autoSoftCommit> 
-      <maxDocs>100000</maxDocs> <!-- maximum uncommited docs before autocommit triggered --> 
+     <autoSoftCommit>  
+      <maxTime>3000</maxTime> 
      </autoSoftCommit>
 
     <!-- Update Related Event Listeners
