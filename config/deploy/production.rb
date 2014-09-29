@@ -2,7 +2,7 @@
 
 set :user, 'ss8558'
 set :application, "SolrServer"
-set :hostname, "aws-master"
+set :hostname, "rails4"
 set :rails_env, 'production'
 set :deploy_to, "/SOLR/#{application}"
 
@@ -10,9 +10,9 @@ set :deploy_to, "/SOLR/#{application}"
 
 set :db_type, "master"
 
-role :app, "66.85.152.90"
-role :web, "66.85.152.90"
-role :db,  "66.85.152.90", :primary => true
+role :app, "184.95.49.202"
+role :web, "184.95.49.202"
+role :db,  "184.95.49.202", :primary => true
 
 set :branch do
   default_tag = `git tag -l #{rails_env}* `.split("\n").last

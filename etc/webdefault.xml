@@ -523,5 +523,38 @@
     <auth-constraint/>
   </security-constraint>
 
+  <!--  this constraint allows access to admin pages, with basic auth  -->
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Solr Admin</web-resource-name>
+      <!--  the admin management -->
+      <url-pattern>/admin/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>admin</role-name>
+    </auth-constraint>
+  </security-constraint>  
+    
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Solr Update</web-resource-name>
+      <!--  the admin management -->
+      <url-pattern>/dispensary/update</url-pattern>
+      <url-pattern>/listingregion/update</url-pattern>
+      <url-pattern>/dispensarymenu/update</url-pattern>
+      <url-pattern>/strain/update</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>admin</role-name>
+      <role-name>content-admin</role-name>
+    </auth-constraint>
+  </security-constraint>
+  
+
+    
+  <login-config>
+    <auth-method>BASIC</auth-method>
+    <realm-name>Airarena Group</realm-name>
+  </login-config>
 </web-app>
 
