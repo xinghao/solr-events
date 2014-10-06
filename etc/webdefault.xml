@@ -532,6 +532,7 @@
     </web-resource-collection>
     <auth-constraint>
       <role-name>admin</role-name>
+      <role-name>content-admin</role-name>      
     </auth-constraint>
   </security-constraint>  
     
