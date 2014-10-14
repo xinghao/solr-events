@@ -5,14 +5,14 @@ set :application, "SolrServer"
 set :hostname, "aws-master"
 set :rails_env, 'production'
 set :deploy_to, "/SOLR/#{application}"
-ssh_options[:keys] = ["/Users/xinghao/aws-ec2/aws-codondex.pem"]
+ssh_options[:keys] = ["/Users/xinghao/aws-ec2/spot101.pem"]
 
 
 set :db_type, "master"
 
-role :app, "23.22.123.123"
-role :web, "23.22.123.123"
-role :db,  "23.22.123.123", :primary => true
+role :app, "54.210.214.175"
+role :web, "54.210.214.175"
+role :db,  "54.210.214.175", :primary => true
 
 set :branch do
   default_tag = `git tag -l #{rails_env}* `.split("\n").last
