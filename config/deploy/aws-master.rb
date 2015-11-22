@@ -10,9 +10,9 @@ ssh_options[:keys] = ["/Users/xinghao/aws-ec2/spot101.pem"]
 
 set :db_type, "master"
 
-role :app, "54.210.214.175"
-role :web, "54.210.214.175"
-role :db,  "54.210.214.175", :primary => true
+role :app, "54.172.140.202"
+role :web, "54.172.140.202"
+role :db,  "54.172.140.202", :primary => true
 
 set :branch do
   default_tag = `git tag -l #{rails_env}* `.split("\n").last

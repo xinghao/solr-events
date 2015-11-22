@@ -10,9 +10,9 @@ set :deploy_to, "/SOLR/#{application}"
 
 set :db_type, "master"
 
-role :app, "184.95.49.202"
-role :web, "184.95.49.202"
-role :db,  "184.95.49.202", :primary => true
+role :app, "111"
+role :web, "111"
+role :db,  "111", :primary => true
 
 set :branch do
   default_tag = `git tag -l #{rails_env}* `.split("\n").last
